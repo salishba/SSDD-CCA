@@ -1,7 +1,5 @@
 # SSDD-CCA
 
-# SSDD CCA Security Demo
-
 This repository contains two versions of the same Flask blog application:
 
 - `vulnerable-version/` — intentionally insecure version
