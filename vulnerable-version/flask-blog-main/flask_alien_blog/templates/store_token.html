@@ -1,0 +1,26 @@
+{% extends 'layout.html' %}
+{% block title %} {{ params['blog_name'] }} - Token Handoff {% endblock %}
+{% block body %}
+<div class="container px-4 px-lg-5 py-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8 col-lg-7">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <h3 class="card-title mb-3">Completing login</h3>
+          <p class="card-text">
+            Your browser session is storing the JWT used by the lab flow.
+          </p>
+          <p class="text-muted small mb-0">Redirecting to your destination now.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  window.addEventListener('DOMContentLoaded', () => {
+    localStorage.setItem('authToken', {{ token|tojson }});
+    window.location.href = {{ next_page|tojson }};
+  });
+</script>
+{% endblock %}
