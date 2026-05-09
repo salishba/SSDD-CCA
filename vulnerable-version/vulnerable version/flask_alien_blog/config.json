@@ -1,0 +1,17 @@
+{
+    "params": {
+        "local_server": true,
+        "local_uri": "sqlite:///blog.db",
+        "prod_uri": "sqlite:///blog.db",
+        "fb_url": "https://facebook.com",
+        "tw_url": "https://twitter.com",
+        "gt_url": "https://github.com",
+        "content-length": 70,
+        "login_image": "login-img.svg",
+        "blog_name": "Tech Blog",
+        "created_on": "2026",
+        "site_db": "sqlite:///site.db",
+        "home-page-posts": 5,
+        "upload_folder": "./static/assets/img"
+    }
+}

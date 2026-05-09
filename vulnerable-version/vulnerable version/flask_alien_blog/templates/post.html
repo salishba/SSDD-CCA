@@ -1,0 +1,72 @@
+{% extends 'layout.html' %} {% block title %} Tech Blog - Coding Guide {%
+endblock %} {% block header %} {% set Urlimg = 'assets/img/' +
+post.background_img %}
+<!-- Page Header-->
+<header
+  class="masthead"
+  style="background-image: url('{{url_for('static',filename=Urlimg)}}')"
+>
+  <div class="container position-relative px-4 px-lg-5">
+    <div class="row gx-4 gx-lg-5 justify-content-center">
+      <div class="col-md-10 col-lg-8 col-xl-7">
+        <div class="post-heading">
+          <h1>{{post.title}}</h1>
+          <h2 class="subheading">{{post.sub_heading}}</h2>
+          <span class="meta">
+            Posted by
+            <a href="/">{{post.postby}}</a>
+            on {{post.date.strftime("%d %B, %Y")}}
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+{% endblock %} {% block body %}
+
+<!-- Post Content-->
+<article class="mb-4">
+  <div class="container px-4 px-lg-5">
+    <div class="row gx-4 gx-lg-5 justify-content-center">
+      <div class="col-md-10 col-lg-8 col-xl-7">
+        {{ post.content | safe }}
+
+        <div class="card mt-4">
+          <div class="card-body">
+            <h5 class="card-title">Browser API check</h5>
+            <p class="card-text mb-3">
+              This demo button reuses the token stored in the browser and calls
+              the JWT API for this post.
+            </p>
+            <button id="load-api-post" class="btn btn-outline-primary btn-sm">
+              Load API JSON
+            </button>
+            <pre id="api-post-output" class="mt-3 mb-0 p-3 bg-light rounded" style="min-height: 120px;"></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+<script>
+  window.addEventListener('DOMContentLoaded', () => {
+    const button = document.getElementById('load-api-post');
+    const output = document.getElementById('api-post-output');
+    if (!button || !output || typeof window.apiCall !== 'function') {
+      return;
+    }
+
+    button.addEventListener('click', async () => {
+      output.textContent = 'Loading...';
+      try {
+        const response = await window.apiCall('/api/post/{{ post.sno }}');
+        const data = await response.json();
+        output.textContent = JSON.stringify(data, null, 2);
+      } catch (error) {
+        output.textContent = 'Request failed: ' + error;
+      }
+    });
+  });
+</script>
+{% endblock %}
