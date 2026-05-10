@@ -1,8 +1,10 @@
 # SSDD-CCA
+
 Syeda Alishba Liaquat CR-19
 Uzma Haneef CR-20
 Sarah Zafar CR-25
 Hashem CR-50
+
 This repository contains two versions of the same Flask blog application:
 
 - `vulnerable-version/` — intentionally insecure version
